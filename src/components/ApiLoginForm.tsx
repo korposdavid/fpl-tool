@@ -17,8 +17,10 @@ const ApiLoginForm = () => {
         password: password
       }
     }).then(response => {
-        console.log(response);
-        setIsLoading(false);
+      if (response.data !== "") {
+        response.data.map((x: string) => (document.cookie = x));
+      }
+      setIsLoading(false);
     });
   };
 
