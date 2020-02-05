@@ -6,6 +6,7 @@ import axios from "axios";
 const ApiLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendLoginRequest = () => {
     axios({
@@ -15,11 +16,15 @@ const ApiLoginForm = () => {
         email: email,
         password: password
       }
-    }).then(response => console.log(response));
+    }).then(response => {
+        console.log(response);
+        setIsLoading(false);
+    });
   };
 
   const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     sendLoginRequest();
   };
 
@@ -47,7 +52,7 @@ const ApiLoginForm = () => {
             }
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" disabled={isLoading} type="submit">
           Submit
         </Button>
       </Form>
