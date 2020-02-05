@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const ApiLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const sendLoginRequest = () => {
+    axios({
+      method: "post",
+      url: "http://localhost:8080/fpl-api-login",
+      data: {
+        email: email,
+        password: password
+      }
+    }).then(response => console.log(response));
+  };
+
+  const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    sendLoginRequest();
+  };
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={formSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>FPL Email</Form.Label>
           <Form.Control
@@ -35,7 +52,6 @@ const ApiLoginForm = () => {
         </Button>
       </Form>
     </div>
-    
   );
 };
 
