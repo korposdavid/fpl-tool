@@ -15,8 +15,10 @@ const ApiLoginForm = () => {
       data: {
         email: email,
         password: password
-      }
+      },
+      headers: { "Access-Control-Allow-Origin": "http://localhost:3000" }
     }).then(response => {
+      console.log(response.data);
       if (response.data !== "") {
         response.data.map((x: string) => (document.cookie = x));
       }
@@ -29,6 +31,7 @@ const ApiLoginForm = () => {
     setIsLoading(true);
     sendLoginRequest();
   };
+
 
   return (
     <div>
