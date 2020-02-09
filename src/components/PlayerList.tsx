@@ -1,5 +1,6 @@
 import React from 'react'
 import Player from '../models/Player'
+import PlayerCard from './PlayerCard';
 
 interface Props {
     players: Player[];
@@ -8,7 +9,7 @@ interface Props {
 const PlayerList: React.FC<Props> = (props) => {
     return (
         <div>
-            {props.players.map(player => <div>{player.code}</div>)}
+            {props.players.map(player => <PlayerCard player={player}></PlayerCard>)}
         </div>
     )
 }
