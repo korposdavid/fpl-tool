@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PlayerList from "./PlayerList";
+import PitchContainer from "./PitchContainer";
 import axios from "axios";
 
 const StarterTeamContainer = () => {
@@ -26,7 +27,9 @@ const StarterTeamContainer = () => {
     <div>
       <Container>
         <Row>
-          <Col sm={7}></Col>
+          <Col sm={7}>
+            <PitchContainer />
+          </Col>
           <Col sm={5}>
             <PlayerList players={playerList}></PlayerList>
           </Col>

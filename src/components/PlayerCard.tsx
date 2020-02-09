@@ -16,11 +16,11 @@ const PlayerCard: React.FC<Props> = props => {
   };
 
   return (
-    <Card bg={cardStatus()} text="white">
+    <Card bg={cardStatus()} text="white" >
       <Card.Body>
         <Container>
           <Row>
-            <Col>
+            <Col sm={9}>
               {" "}
               <Card.Title>
                 {props.player.first_name +
@@ -32,11 +32,10 @@ const PlayerCard: React.FC<Props> = props => {
               </Card.Title>
               <hr />
               <Card.Text>
-                ICT: {props.player.ict_index} | Infl: {props.player.influence} |
-                Thr: {props.player.threat} | Crt: {props.player.creativity}
+                ICT: {props.player.ict_index} | Infl: {props.player.influence}
               </Card.Text>
             </Col>
-            <Col>
+            <Col sm={3}>
               <Card.Text>Price: {props.player.now_cost / 10}</Card.Text>
               <hr />
               <Card.Text>Form: {props.player.form}</Card.Text>
