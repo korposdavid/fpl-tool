@@ -23,8 +23,8 @@ const PlayerCard: React.FC<Props> = props => {
             <Col sm={9}>
               {" "}
               <Card.Title>
-                {props.player.first_name +
-                  " " +
+                {props.player.first_name.slice(0,1) +
+                  ". " +
                   props.player.second_name +
                   " (" +
                   props.player.team +

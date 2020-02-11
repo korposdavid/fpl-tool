@@ -13,7 +13,7 @@ const StarterTeamContainer = () => {
     console.log("fetching player list from server");
     axios({
       method: "get",
-      url: "http://localhost:8080/my-team/1"
+      url: "http://localhost:8080/players/47,181,65,308,291,191,215,342,150,313,187,93,468,164,271"
     }).then(response => {
       setPlayerList(response.data);
     });
