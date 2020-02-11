@@ -1,38 +1,43 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import Player from "../models/Player";
+import PlayerBadge from "../components/PlayerBadge";
+import CardGroup from "react-bootstrap/CardGroup";
 
-interface Props {}
+interface Props {
+  players: Player[];
+}
 
-const PitchContainer: React.FC<Props> = () => {
+const PitchContainer: React.FC<Props> = props => {
   const bgImage =
     "https://johnburnmurdoch.github.io/football-pitch-tracker/half-rotate.png";
   return (
     <div
       style={{
         backgroundImage: `url(${bgImage})`,
-        backgroundSize: "100% 100%"
+        backgroundSize: "100% 100%",
+        minWidth: "650px"
       }}
     >
-      <Card style={{ opacity: "0.1" }}>
-        <Card.Text>
-          GK<br></br>GK<br></br>GK
-        </Card.Text>
-      </Card>
-      <Card style={{ opacity: "0.1" }}>
-        <Card.Text>
-          DEF<br></br>DEF<br></br>DEF
-        </Card.Text>
-      </Card>
-      <Card style={{ opacity: "0.1" }}>
-        <Card.Text>
-          MID<br></br>MID<br></br>MID
-        </Card.Text>
-      </Card>
-      <Card style={{ opacity: "0.1" }}>
-        <Card.Text>
-          FW<br></br>FW<br></br>FW
-        </Card.Text>
-      </Card>
+      <CardGroup style={{ width: "20%", textAlign: "center" }}>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+      </CardGroup>
+      <CardGroup style={{ width: "60%", textAlign: "center" }}>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+      </CardGroup>
+      <CardGroup style={{ width: "100%", textAlign: "center" }}>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+      </CardGroup>
+      <CardGroup style={{ width: "40%", textAlign: "center" }}>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+        <PlayerBadge player={props.players[0]}></PlayerBadge>
+      </CardGroup>
     </div>
   );
 };

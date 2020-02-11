@@ -28,7 +28,7 @@ const StarterTeamContainer = () => {
       <Container>
         <Row>
           <Col sm={7}>
-            <PitchContainer />
+            <PitchContainer players={playerList} />
           </Col>
           <Col sm={5}>
             <PlayerList players={playerList}></PlayerList>
