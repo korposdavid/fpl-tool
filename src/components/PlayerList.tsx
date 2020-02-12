@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import Player from "../models/Player";
 import PlayerCard from "./PlayerCard";
 import ListHeader from "./ListHeader";
@@ -9,13 +9,19 @@ interface Props {
 }
 
 const PlayerList: React.FC<Props> = props => {
+  const [isToggled, setIsToggled] = useState(false);
+
+  const toggle = () => {
+    setIsToggled(!isToggled);
+  };
+
   return (
-    <div>
-      <ListHeader title={props.title} />
-      {props.players.map(player => (
-        <PlayerCard player={player}></PlayerCard>
-      ))}
-    </div>
+    <Fragment>
+      <ListHeader toggle={toggle} title={props.title} />
+      {isToggled === false
+        ? props.players.map(player => <PlayerCard player={player}></PlayerCard>)
+        : ""}
+    </Fragment>
   );
 };
 

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PlayerList from "./PlayerList";
-import PitchContainer from "./PitchContainer";
 import axios from "axios";
 import Player from "../models/Player";
 
@@ -23,7 +21,7 @@ const PlayerListContainer = () => {
 
   const filterPlayersByPosition = (position: number) => {
     return playerList.filter(function(player: Player) {
-      return player.element_type == position;
+      return player.element_type === position;
     });
   };
 
@@ -32,24 +30,26 @@ const PlayerListContainer = () => {
   }, []);
 
   return (
-    <div>
-      <PlayerList
-        players={filterPlayersByPosition(1)}
-        title={"Goalkeepers"}
-      ></PlayerList>
-      <PlayerList
-        players={filterPlayersByPosition(2)}
-        title={"Defenders"}
-      ></PlayerList>
-      <PlayerList
-        players={filterPlayersByPosition(3)}
-        title={"Midfielders"}
-      ></PlayerList>
-      <PlayerList
-        players={filterPlayersByPosition(4)}
-        title={"Forwards"}
-      ></PlayerList>
-    </div>
+    <Container>
+      <Col sm={12} md={12}>
+        <PlayerList
+          players={filterPlayersByPosition(1)}
+          title={"Goalkeepers"}
+        ></PlayerList>
+        <PlayerList
+          players={filterPlayersByPosition(2)}
+          title={"Defenders"}
+        ></PlayerList>
+        <PlayerList
+          players={filterPlayersByPosition(3)}
+          title={"Midfielders"}
+        ></PlayerList>
+        <PlayerList
+          players={filterPlayersByPosition(4)}
+          title={"Forwards"}
+        ></PlayerList>
+      </Col>
+    </Container>
   );
 };
 
