@@ -28,7 +28,7 @@ const PlayerCard: React.FC<Props> = props => {
                   ". " +
                   props.player.second_name +
                   " (" +
-                  props.player.team +
+                  props.player.teamObject.short_name +
                   ")"}
               </Card.Title>
               <hr />
