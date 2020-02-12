@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import Player from "../models/Player";
 import PlayerBadge from "../components/PlayerBadge";
 import CardGroup from "react-bootstrap/CardGroup";
