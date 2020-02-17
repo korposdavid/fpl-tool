@@ -1,9 +1,9 @@
 import React from "react";
 import Player from "../models/Player";
 import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
+/*import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Col from "react-bootstrap/Col";*/
 import Badge from "react-bootstrap/Badge";
 
 interface Props {
@@ -33,7 +33,9 @@ const PlayerCard: React.FC<Props> = props => {
           <Badge variant="secondary">I: {props.player.influence}</Badge>
           <Badge variant="secondary">C: {props.player.creativity}</Badge>
           <Badge variant="secondary">T: {props.player.threat}</Badge>
-          <Badge variant="secondary">Price: {props.player.now_cost / 10.0}</Badge>
+          <Badge variant="secondary">
+            Price: {props.player.now_cost / 10.0}
+          </Badge>
           <Badge variant="secondary">Form: {props.player.form}</Badge>
         </Card.Text>
       </Card.Body>
