@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, createContext } from "react";
 import UserModel from "../models/UserModel";
 import { useCookies } from "react-cookie";
+import { CookiesProvider } from "react-cookie";
 
 interface Props {
   [x: string]: any;
@@ -23,7 +24,6 @@ const AuthenticationProvider: React.FC<Props> = props => {
   const [cookies] = useCookies(["XSRF-TOKEN"]);
 
   useEffect(() => {
-    console.log("useEffect runs in authprovider");
     fetch("http://localhost:8080/api/user", { credentials: "include" }).then(
       response => {
         response.text().then(body => {
@@ -38,7 +38,6 @@ const AuthenticationProvider: React.FC<Props> = props => {
   }, []);
 
   const loginFunc = () => {
-    console.log("loginfunc runs in authprovider");
     let port = window.location.port ? ":" + window.location.port : "";
     if (port === ":3000") {
       port = ":8080";
@@ -70,7 +69,11 @@ const AuthenticationProvider: React.FC<Props> = props => {
     logout: logoutFunc
   };
 
-  return <AuthContext.Provider value={auth} {...props} />;
+  return (
+    <CookiesProvider>
+      <AuthContext.Provider value={auth} {...props} />{" "}
+    </CookiesProvider>
+  );
 };
 
 export default AuthenticationProvider;
