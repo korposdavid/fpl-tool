@@ -21,7 +21,7 @@ const AuthContext = createContext<AuthContextInterface>({
 
 const AuthenticationProvider: React.FC<Props> = props => {
   const [user, setUser] = useState<UserModel | null>(null);
-  const [cookies] = useCookies(["XSRF-TOKEN"]);
+  const [cookies] = useCookies();
 
   useEffect(() => {
     fetch("http://localhost:8080/api/user", { credentials: "include" }).then(
@@ -49,18 +49,11 @@ const AuthenticationProvider: React.FC<Props> = props => {
     fetch("http://localhost:8080/api/logout", {
       method: "POST",
       credentials: "include",
-      headers: { "X-XSRF-TOKEN": cookies.verbose }
-    })
-      .then(res => res.json())
-      .then(response => {
-        window.location.href =
-          response.logoutUrl +
-          "?id_token_hint=" +
-          response.idToken +
-          "&post_logout_redirect_uri=" +
-          window.location.origin;
-      });
-    setUser(null);
+      headers: { "X-XSRF-TOKEN": cookies["XSRF-TOKEN"] }
+    }).then(res => {
+      console.log("User logout successful");
+      setUser(null);
+    });
   };
 
   const auth = {
