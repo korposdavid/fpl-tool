@@ -5,6 +5,7 @@ import { useAuthentication } from "./AuthenticationProvider";
 import AuthPage from "./AuthPage";
 import { RouteProps } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import TeamCreatorPage from "./TeamCreatorPage"
 
 interface PrivateRouteProps extends RouteProps {
   [x: string]: any;
@@ -22,6 +23,7 @@ const CustomRouter = () => (
     <Switch>
       <Route path="/home" component={AuthPage} />
       <PrivateRoute path="/team" component={PlayerListContainer} />
+      <PrivateRoute path="/create" component={TeamCreatorPage} />
       <Redirect from="/" to="/home" />
     </Switch>
   </BrowserRouter>
