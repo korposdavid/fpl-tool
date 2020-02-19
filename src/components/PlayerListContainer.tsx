@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import PlayerList from "./PlayerList";
 import axios from "axios";
 import Player from "../models/Player";
+import Button from "react-bootstrap/Button";
+import { useAuthentication } from "./AuthenticationProvider";
 
 const PlayerListContainer = () => {
   const [playerList, setPlayerList] = useState([]);
+  const { user } = useAuthentication();
 
   const fetchPlayers = () => {
     console.log("fetching player list from server");
     axios({
       method: "get",
+      withCredentials: true,
       url:
         "http://localhost:8080/players/47,181,65,308,291,191,215,342,150,313,187,93,468,164,271"
     }).then(response => {
@@ -29,7 +33,7 @@ const PlayerListContainer = () => {
     fetchPlayers();
   }, []);
 
-  return (
+  const userHasSquad = (
     <Container>
       <Col sm={12} md={12}>
         <PlayerList
@@ -51,6 +55,18 @@ const PlayerListContainer = () => {
       </Col>
     </Container>
   );
+
+  const noSquadForUser = (
+    <Fragment>
+      <p>
+        You don't have a team in our database, but you can create one on the
+        Team Creator Page!
+      </p>
+      <Button href="/create">Team Creator Page</Button>
+    </Fragment>
+  );
+
+  return (user && user.squad.length>0) ? userHasSquad : noSquadForUser;
 };
 
 export default PlayerListContainer;
