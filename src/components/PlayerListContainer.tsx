@@ -8,30 +8,16 @@ import Button from "react-bootstrap/Button";
 import { useAuthentication } from "./AuthenticationProvider";
 
 const PlayerListContainer = () => {
-  const [playerList, setPlayerList] = useState([]);
   const { user } = useAuthentication();
 
-  const fetchPlayers = () => {
-    console.log("fetching player list from server");
-    axios({
-      method: "get",
-      withCredentials: true,
-      url:
-        "http://localhost:8080/players/47,181,65,308,291,191,215,342,150,313,187,93,468,164,271"
-    }).then(response => {
-      setPlayerList(response.data);
-    });
-  };
+  const playerList = user ? user.squad : [];
+  const userHasSquad = playerList.length > 0;
 
   const filterPlayersByPosition = (position: number) => {
     return playerList.filter(function(player: Player) {
       return player.element_type === position;
     });
   };
-
-  useEffect(() => {
-    fetchPlayers();
-  }, []);
 
   const userSquad = (
     <Container>
@@ -65,8 +51,6 @@ const PlayerListContainer = () => {
       <Button href="/create">Team Creator Page</Button>
     </Fragment>
   );
-
-  const userHasSquad = user ? user.squad.length > 0 : false;
 
   return userHasSquad ? userSquad : noUserSquad;
 };
