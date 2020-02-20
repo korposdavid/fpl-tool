@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import PlayerList from "./PlayerList";
-import axios from "axios";
 import Player from "../models/Player";
 import Button from "react-bootstrap/Button";
 import { useAuthentication } from "./AuthenticationProvider";
