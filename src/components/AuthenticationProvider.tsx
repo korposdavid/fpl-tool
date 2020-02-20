@@ -8,19 +8,19 @@ interface Props {
 }
 
 interface AuthContextInterface {
-  user: UserModel | null;
+  user: UserModel | undefined;
   login: () => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextInterface>({
-  user: null,
+  user: undefined,
   login: () => {},
   logout: () => {}
 });
 
 const AuthenticationProvider: React.FC<Props> = props => {
-  const [user, setUser] = useState<UserModel | null>(null);
+  const [user, setUser] = useState<UserModel | undefined>(undefined);
   const [cookies] = useCookies();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const AuthenticationProvider: React.FC<Props> = props => {
       response => {
         response.text().then(body => {
           if (body === "") {
-            setUser(null);
+            setUser(undefined);
           } else {
             setUser(JSON.parse(body));
           }
@@ -52,7 +52,7 @@ const AuthenticationProvider: React.FC<Props> = props => {
       headers: { "X-XSRF-TOKEN": cookies["XSRF-TOKEN"] }
     }).then(res => {
       console.log("User logout successful");
-      setUser(null);
+      setUser(undefined);
     });
   };
 

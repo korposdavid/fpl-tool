@@ -33,7 +33,7 @@ const PlayerListContainer = () => {
     fetchPlayers();
   }, []);
 
-  const userHasSquad = (
+  const userSquad = (
     <Container>
       <Col sm={12} md={12}>
         <PlayerList
@@ -56,7 +56,7 @@ const PlayerListContainer = () => {
     </Container>
   );
 
-  const noSquadForUser = (
+  const noUserSquad = (
     <Fragment>
       <p>
         You don't have a team in our database, but you can create one on the
@@ -66,7 +66,9 @@ const PlayerListContainer = () => {
     </Fragment>
   );
 
-  return (user && user.squad.length>0) ? userHasSquad : noSquadForUser;
+  const userHasSquad = user ? user.squad.length > 0 : false;
+
+  return userHasSquad ? userSquad : noUserSquad;
 };
 
 export default PlayerListContainer;
