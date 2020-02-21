@@ -23,6 +23,7 @@ const PlayerList: React.FC<Props> = props => {
       {isToggled === false
         ? props.players.map(player => (
             <PlayerCard
+              key={player.id}
               actionButtonFunction={props.actionButtonFunction}
               actionButtonName={props.actionButtonName}
               player={player}
