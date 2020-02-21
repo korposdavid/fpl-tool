@@ -27,6 +27,9 @@ const TeamCreatorPage = () => {
   };
 
   const addPlayerToTeam = (player: Player) => {
+    if (selectedPlayers.includes(player)) {
+      return;
+    }
     setSelectedPlayers([player, ...selectedPlayers]);
   };
 
