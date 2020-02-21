@@ -6,6 +6,8 @@ import ListHeader from "./ListHeader";
 interface Props {
   players: Player[];
   title: String;
+  actionButtonFunction?: Function;
+  actionButtonName?: string;
 }
 
 const PlayerList: React.FC<Props> = props => {
@@ -19,7 +21,13 @@ const PlayerList: React.FC<Props> = props => {
     <Fragment>
       <ListHeader toggle={toggle} title={props.title} />
       {isToggled === false
-        ? props.players.map(player => <PlayerCard player={player}></PlayerCard>)
+        ? props.players.map(player => (
+            <PlayerCard
+              actionButtonFunction={props.actionButtonFunction}
+              actionButtonName={props.actionButtonName}
+              player={player}
+            ></PlayerCard>
+          ))
         : ""}
     </Fragment>
   );

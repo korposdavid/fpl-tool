@@ -5,11 +5,12 @@ import Row from "react-bootstrap/Row";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import PlayerList from "./PlayerList";
+import Player from "../models/Player";
 
 const TeamCreatorPage = () => {
-  const [selectedPlayers, setSelectedPlayers] = useState([]);
+  const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
   const [searchName, setSearchName] = useState("");
-  const [foundPlayers, setFoundPlayers] = useState([]);
+  const [foundPlayers, setFoundPlayers] = useState<Player[]>([]);
 
   const fetchSearch = (name: string) => {
     if (name.length < 2) {
@@ -24,6 +25,14 @@ const TeamCreatorPage = () => {
       });
     });
   };
+
+  const addPlayerToTeam = (player: Player) => {
+    setSelectedPlayers([player, ...selectedPlayers]);
+  };
+
+  const removePlayerFromTeam = (player: Player) => {
+    setSelectedPlayers(selectedPlayers.filter(x => x !== player));
+  }
 
   useEffect(() => {
     fetchSearch(searchName.trim());
@@ -54,12 +63,16 @@ const TeamCreatorPage = () => {
           <PlayerList
             players={foundPlayers}
             title={"Found Players"}
+            actionButtonFunction={addPlayerToTeam}
+            actionButtonName="+"
           ></PlayerList>
         </Col>
         <Col sm={6} md={6}>
           <PlayerList
             players={selectedPlayers}
             title={"Selected Players"}
+            actionButtonFunction={removePlayerFromTeam}
+            actionButtonName="-"
           ></PlayerList>
         </Col>
       </Row>
