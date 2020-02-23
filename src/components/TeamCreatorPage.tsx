@@ -8,6 +8,7 @@ import PlayerList from "./PlayerList";
 import Player from "../models/Player";
 import Button from "react-bootstrap/Button";
 import PositionCounterComponent from "./PositionCounterComponent";
+import axios from "axios";
 
 const TeamCreatorPage = () => {
   const [selectedPlayers, setSelectedPlayers] = useState<Player[]>([]);
@@ -44,6 +45,20 @@ const TeamCreatorPage = () => {
     fetchSearch(searchName.trim());
   }, [searchName]);
 
+  const submitTeam = () => {
+    console.log("submitting team");
+    axios({
+      method: "post",
+      url: "http://localhost:8080/team",
+      withCredentials: true,
+      data: {
+        players: selectedPlayers.map(player => player.id)
+      }
+    }).then(response => {
+      console.log("new team saved successfully");
+    });
+  };
+
   return (
     <Container>
       <Row>
@@ -62,8 +77,17 @@ const TeamCreatorPage = () => {
               }}
             />
             <InputGroup.Append>
-              <PositionCounterComponent validSetter={setSelectedIsValid} selectedPlayers={selectedPlayers}></PositionCounterComponent>
-              <Button variant="outline-primary" disabled={!selectedIsValid}>Save Selected Team</Button>
+              <PositionCounterComponent
+                validSetter={setSelectedIsValid}
+                selectedPlayers={selectedPlayers}
+              ></PositionCounterComponent>
+              <Button
+                variant="outline-primary"
+                disabled={!selectedIsValid}
+                onClick={() => submitTeam()}
+              >
+                Save Selected Team
+              </Button>
             </InputGroup.Append>
           </InputGroup>
         </Col>
