@@ -49,13 +49,13 @@ const TeamCreatorPage = () => {
     console.log("submitting team");
     axios({
       method: "post",
-      url: "http://localhost:8080/team",
+      url: "http://localhost:8080/squad",
       withCredentials: true,
       data: {
         players: selectedPlayers.map(player => player.id)
       }
     }).then(response => {
-      console.log("new team saved successfully");
+      console.log("new squad saved successfully");
     });
   };
 
