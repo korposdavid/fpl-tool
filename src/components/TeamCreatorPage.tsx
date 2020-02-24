@@ -64,6 +64,13 @@ const TeamCreatorPage = () => {
       });
   };
 
+  const selectedTeamInfo = () => {
+    if (selectedIsValid) {
+      return "Click to Submit"
+    }
+    return "Please select 2 goalkeepers, 5 defenders, 5 midfielders and 3 forwards";
+  };
+
   return (
     <Container>
       <Row>
@@ -90,6 +97,7 @@ const TeamCreatorPage = () => {
                 variant="outline-primary"
                 disabled={!selectedIsValid}
                 onClick={() => submitTeam()}
+                title={selectedTeamInfo()}
               >
                 Save Selected Team
               </Button>
