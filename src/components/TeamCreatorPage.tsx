@@ -31,7 +31,7 @@ const TeamCreatorPage = () => {
   };
 
   const addPlayerToTeam = (player: Player) => {
-    if (selectedPlayers.includes(player)) {
+    if (selectedPlayers.filter(x => x.id === player.id).length>0) {
       return;
     }
     setSelectedPlayers([player, ...selectedPlayers]);
