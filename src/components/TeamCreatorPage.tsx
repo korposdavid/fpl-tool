@@ -21,12 +21,12 @@ const TeamCreatorPage = () => {
       return;
     }
     console.log("fetching results..");
-    fetch("http://localhost:8080/players/filter/" + name, {
-      credentials: "include"
+    axios({
+      method: "get",
+      url: "http://localhost:8080/players/name/" + name,
+      withCredentials: true,
     }).then(response => {
-      response.text().then(body => {
-        setFoundPlayers(JSON.parse(body));
-      });
+      setFoundPlayers(response.data);
     });
   };
 
