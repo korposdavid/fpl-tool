@@ -24,7 +24,7 @@ const TeamCreatorPage = () => {
     axios({
       method: "get",
       url: "http://localhost:8080/players/name/" + name,
-      withCredentials: true,
+      withCredentials: true
     }).then(response => {
       setFoundPlayers(response.data);
     });
@@ -54,9 +54,14 @@ const TeamCreatorPage = () => {
       data: {
         players: selectedPlayers.map(player => player.id)
       }
-    }).then(response => {
-      console.log("new squad saved successfully");
-    });
+    })
+      .then(response => {
+        console.log(response.data);
+        window.location.href = "http://localhost:3000/team";
+      })
+      .catch(e => {
+        console.log(e.response.data);
+      });
   };
 
   return (
