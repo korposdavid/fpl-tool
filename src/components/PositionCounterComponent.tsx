@@ -33,13 +33,29 @@ const PositionCounterComponent: React.FC<Props> = props => {
 
   return (
     <Fragment>
-      <InputGroup.Text>GK</InputGroup.Text>
+      <InputGroup.Text title={"Goalkeeper"}>
+        <span role="img" aria-label="GK">
+          🧤
+        </span>
+      </InputGroup.Text>
       <InputGroup.Text>{countPosition(1)}</InputGroup.Text>
-      <InputGroup.Text>DEF</InputGroup.Text>
+      <InputGroup.Text title={"Defender"}>
+        <span role="img" aria-label="DEF">
+          🛡️
+        </span>
+      </InputGroup.Text>
       <InputGroup.Text>{countPosition(2)}</InputGroup.Text>
-      <InputGroup.Text>MID</InputGroup.Text>
+      <InputGroup.Text title={"Midfielder"}>
+        <span role="img" aria-label="MID">
+        ⚒️
+        </span>
+      </InputGroup.Text>
       <InputGroup.Text>{countPosition(3)}</InputGroup.Text>
-      <InputGroup.Text>FW</InputGroup.Text>
+      <InputGroup.Text title={"Forward"}>
+        <span role="img" aria-label="FW">
+          🎯
+        </span>
+      </InputGroup.Text>
       <InputGroup.Text>{countPosition(4)}</InputGroup.Text>
     </Fragment>
   );
